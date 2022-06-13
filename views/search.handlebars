@@ -1,0 +1,31 @@
+<div id='search-wrapper'>
+  <div id='search-controls' class='search'>
+    <div id='inner-search-wrapper'>
+      <p id='search-status-update'></p>
+      <input
+        id='search'
+        placeholder='Search user'
+        aria-label='Search through site content'
+      />
+      <button id='submit-user'>Search</button>
+      <button id='clear-search'>Clear</button>
+      <button id='clear-history'>Clear History</button>
+    </div>
+    <p id='history-search-label'>Previous searches</p>
+    <div id='history-searches'></div>
+    <hr />
+    <div id='category-wrapper'>
+      <p style='margin-bottom: 0;'>Search by existing categories</p>
+      {{#each categoryArr as |category|}}
+        <button
+          class='category-btns {{category.category_name}} search-category-btns'
+          data-category-id='{{category.id}}'
+        >{{category.category_name}}</button>
+      {{/each}}
+    </div>
+  </div>
+  <div id='search-user-wrapper'></div>
+  <div id='search-post-wrapper'></div>
+</div>
+<script src='/javascript/handle-category-search.js'></script>
+<script src='/javascript/handle-user-search.js'></script>

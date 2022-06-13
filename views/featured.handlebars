@@ -1,0 +1,72 @@
+<div class='featured-wrapper'>
+  <div class='featured-posts'>
+    <div class='post-top-likes' id='featured-posts'>
+      <h2>Top 5 Liked Posts</h2>
+      {{#each postsLikesObj as |post|}}
+        <a id='single-post' href='/post/{{post.id}}'>
+          <img
+            class='{{post.image_filter}}'
+            id='post-image'
+            src='{{checkImage post.image_url}}{{post.image_url}}'
+            alt='{{post.title}}'
+          />
+          <div id='post-body-wrapper'>
+            <div id='title-wrapper'>
+              <p id='post-date'>{{post.user.username}}
+                -
+                {{format_date post.created_at}}</p>
+              <p
+                class='{{post.category_name}}'
+                id='post-category'
+              >{{post.category_name}}</p>
+            </div>
+            <h4 id='post-title'>{{post.title}}</h4>
+            <p id='post-body'>
+              {{post.body}}
+            </p>
+          </div>
+          <div id='post-icon-wrapper'>
+            <div id='like-icon-wrapper'>
+              <img class='like-icon' src='./images/like.png' alt='' />
+              <p>{{checkCounter post.likes}}</p>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+    <div class='post-top-comments' id='featured-posts'>
+      <h2>Top 5 Commented Posts</h2>
+      {{#each postsCommentsObj as |post|}}
+        <a id='single-post' href='/post/{{post.id}}'>
+
+          <img
+            id='post-image'
+            src='{{checkImage post.image_url}}{{post.image_url}}'
+            alt='{{post.title}}'
+          />
+          <div id='post-body-wrapper'>
+            <div id='title-wrapper'>
+              <p id='post-date'>{{post.user.username}}
+                -
+                {{format_date post.created_at}}</p>
+              <p
+                class='{{post.category_name}}'
+                id='post-category'
+              >{{post.category_name}}</p>
+            </div>
+            <h4 id='post-title'>{{post.title}}</h4>
+            <p id='post-body'>
+              {{post.body}}
+            </p>
+          </div>
+          <div id='post-icon-wrapper'>
+            <div id='chat-icon-wrapper'>
+              <img id='chat-icon' src='./images/comment.png' alt='' />
+              <p>{{checkCounter post.comments}}</p>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+  </div>
+</div>

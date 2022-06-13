@@ -1,0 +1,103 @@
+<p id='login-notice'>You must
+  <strong>Sign up</strong>
+  or be
+  <strong>logged in</strong>
+  <br />to access the full features of Petters.</p>
+<div class='login-container'>
+  <h1>Login</h1>
+  <form id='login-form'>
+    <div id='form-inputs'>
+      <input
+        type='username'
+        id='username-login'
+        class='signin-input'
+        placeholder='Username'
+      />
+      <div id='pass-wrapper'>
+        <input
+          type='password'
+          id='pass-login'
+          class='signin-input'
+          placeholder='Password'
+        />
+        <img
+          id='reveal-pass'
+          class='reveal-signin'
+          src='images/reveal-pass.png'
+          alt=''
+        />
+      </div>
+      <p id='signin-status'></p>
+    </div>
+    <button disabled='true' id='login-btn' type='submit'>Login</button>
+  </form>
+</div>
+<hr id='loginHr' />
+<div class='signup-container'>
+  <h1>Sign up</h1>
+  <form id='signup-form'>
+    <div id='form-inputs'>
+      <input
+        type='text'
+        id='signup-username'
+        class='signup-input'
+        placeholder='Username'
+      />
+      <p id='check-user'></p>
+      <input
+        type='email'
+        id='signup-email'
+        class='signup-input'
+        placeholder='Email'
+      />
+      <p id='check-email'></p>
+      <div id='pass-wrapper'>
+        <input
+          type='password'
+          id='signup-pass'
+          class='pass1 pass signup-input'
+          placeholder='Password'
+        />
+        <img
+          id='reveal-pass'
+          class='reveal-signup'
+          src='images/reveal-pass.png'
+          alt=''
+        />
+      </div>
+      <input
+        type='password'
+        id='signup-pass'
+        class='pass2 pass signup-input'
+        placeholder='Confirm password'
+      />
+      <div class='pass-status'>
+        <div id='pass-bar'>
+          <div class='pass-fill'></div>
+        </div>
+        <p id='signup-status'><span id='signup-criteria-status'></span>
+          <span style='color: black'>-</span>
+          <span id='signup-pass-status'></span>
+        </p>
+        <div class='single-stat'>
+          <div class='passCircle len-status default'></div>
+          <p>8 Characters required</p>
+        </div>
+        <div class='single-stat'>
+          <div class='passCircle num-status default'></div>
+          <p>1 Number required</p>
+        </div>
+        <div class='single-stat'>
+          <div class='passCircle sym-status default'></div>
+          <p>1 Symbol required</p>
+        </div>
+        <div class='single-stat'>
+          <div class='passCircle cap-status default'></div>
+          <p>1 Capital letter required</p>
+        </div>
+      </div>
+    </div>
+    <button disabled='true' id='submit-btn' type='submit'>Signup</button>
+  </form>
+</div>
+<script src='/javascript/login.js'></script>

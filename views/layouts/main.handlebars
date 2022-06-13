@@ -1,0 +1,60 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, user-scalable=no' />
+    <link
+      rel='stylesheet'
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css'
+      integrity='sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor'
+      crossorigin='anonymous'
+    />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,800;1,300;1,800&display=swap'
+      rel='stylesheet'
+    />
+    <link rel='stylesheet' href='../stylesheets/styles.css' type='text/css' />
+    <link rel='icon' type='image/x-icon' href='/images/favicon.ico' />
+    <title>Petters - Home</title>
+  </head>
+  <body>
+    <header>
+      <div id='header-head'>
+        <img
+          id='header-logo'
+          src='./images/Header-logo.png'
+          alt='header logo'
+        />
+      </div>
+      <nav>
+        <a class='navItem' id='home-nav-btn' href='/'>Home</a>
+        <a class='navItem' id='dash-nav-btn' href='/dashboard'>Dashboard</a>
+        {{#if loggedIn}}{{else}}
+          <a class='navItem' id='login-nav-btn' href='/login'>Login</a>
+        {{/if}}
+        <a class='navItem' id='featured-nav-btn' href='/featured'>Featured</a>
+        <a class='navItem' id='search-nav-btn' href='/search'>Search</a>
+      </nav>
+      <div id='user-wrapper'>
+        {{#if loggedIn}}
+          <a class='navItem' id='logout'>Logout</a>
+        {{/if}}
+        {{#if loggedIn}}
+          <h5 id='loggedIn-as'>Logged in as <span>{{username}}</span></h5>
+        {{else}}
+          {{! Empty div below works in tandem with space-between }}
+          <div id='empty'></div>
+        {{/if}}
+      </div>
+    </header>
+    <main>
+      {{{body}}}
+      <button class='scrollTop'>Scroll to top</button>
+    </main>
+  </body>
+</html>
+{{#if loggedIn}}
+  <script src='/javascript/logout.js'></script>
+{{/if}}
+<script src='/javascript/main.js'></script>

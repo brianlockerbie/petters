@@ -1,0 +1,149 @@
+<div id='dashboard-wrapper'>
+  <div id="addPost-wrapper">
+    <h3>Add Post</h3>
+    <form
+      id='addPost-form'
+      method='POST'
+      action='/api/posts'
+      enctype='multipart/form-data'
+    >
+      <input
+        id='add-title'
+        type='text'
+        name='title'
+        placeholder='Title  *required'
+      />
+      <textarea
+        id='add-desc'
+        type='text'
+        name='desc'
+        placeholder='Description  *required'
+      ></textarea>
+      <div id='add-select-wrapper'>
+        <input id='add-post-image' type='file' name='image' />
+        <select id='category-options' name='existing_categories'>
+          <option value='' disabled selected>Pick a category</option>
+          {{#each categories as |category|}}
+            <option
+              data-category-id={{category.id}}
+              value='{{category.id}}'
+            >{{category.category_name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div id='filter-status'>
+        <select id='filter-options' name='image_filter'>
+          <option value=''>Pick a filter</option>
+          <option value='no-filter' type='button' data-chosen='false'>No Filter</option>
+          <option value='sepia' type='button' data-chosen='false'>Sepia</option>
+          <option value='invert' type='button' data-chosen='false'>Invert</option>
+          <option
+            value='grayscale'
+            type='button'
+            data-chosen='false'
+          >Grayscale</option>
+          <option value='red-tint' type='button' data-chosen='false'>Red tint</option>
+          <option value='blue-tint' type='button' data-chosen='false'>Blue tint</option>
+          <option value='purple-tint' type='button' data-chosen='false'>Purple
+            tint</option>
+          <option value='orange-tint' type='button' data-chosen='false'>Orange
+            tint</option>
+        </select>
+        <p id='upload-status'></p>
+      </div>
+      <div id='preview-filter'>
+        <p>Preview Filter</p>
+        <img src='./images/1654045031458.PNG' alt='' />
+        <img id='image-test' src='./images/1654045031458.PNG' alt='' />
+      </div>
+      <button id='add-post' type='submit'>Post</button>
+    </form>
+  </div>
+  <div id="category-wrapper">
+    <h3 id='category-title'>Add new Category</h3>
+    <form id='addCategory-form' method='POST' action='/api/category'>
+      <div id='category-status'>
+        <input
+          id='category_name'
+          name='category_name'
+          type='text'
+          placeholder='Enter new category'
+        />
+        <p id='category-upload-status'></p>
+      </div>
+      <button id='add-category' type='submit'>Post</button>
+    </form>
+  </div>
+  <div id="random-post-wrapper">
+    <h3 id='random-post-title'>Generate random post</h3>
+    <div style="display: flex">
+      <button id='random-post'>Generate</button>
+      <p id='generating-status'></p>
+    </div>
+  </div>
+</div>
+
+<hr id='dashboardHr' />
+<h1 id='your-posts'>Your posts</h1>
+{{#if posts}}{{else}}
+  <p id='no-posts'>You have not uploaded any posts</p>
+{{/if}}
+<div>
+<div id='dashboard-posts'>
+  {{#each posts as |post|}}
+    <div id='single-post'>
+      <img
+        class='{{post.image_filter}}'
+        id='post-image'
+        src='{{post.image_url}}'
+        alt='{{post.title}}'
+      />
+      <div class='db-post-wrapper' id='post-body-wrapper'>
+        <div id='title-wrapper'>
+          <p id='post-date'>{{post.user.username}}
+            -
+            {{format_date post.created_at}}</p>
+          <p
+            class='{{post.category_name}}'
+            id='post-category'
+          >{{post.category_name}}</p>
+        </div>
+        <h4 id='post-title'>{{post.title}}</h4>
+        <p id='post-body'>
+          {{post.body}}
+        </p>
+      </div>
+      <div id='post-controls'>
+        <button
+          data-post-id={{post.id}}
+          class='edit-post-id'
+          id='edit-post-{{post.id}}'
+        >Edit</button>
+        <button
+          data-post-id={{post.id}}
+          class='delete-post-id'
+          id='delete-post-{{post.id}}'
+        >Delete post</button>
+        <button
+          data-post-id={{post.id}}
+          id='view-comments-{{post.id}}'
+          class='view-comments'
+        >View comments</button>
+        <button
+          data-post-id={{post.id}}
+          class='confirm-post'
+          id='confirm-post-{{post.id}}'
+        >Confirm</button>
+      </div>
+      <p class="edit-post-status" id='edit-post-status-{{post.id}}'></p>
+    </div>
+  {{/each}}
+</div>
+
+<script src='./javascript/dashboard/preview-filter.js'></script>
+<script src='./javascript/dashboard/fetch-animal.js'></script>
+<script src='./javascript/dashboard/check-category-form.js'></script>
+<script src='./javascript/dashboard/check-post-form.js'></script>
+<script src='./javascript/dashboard/edit-post.js'></script>
+<script src='./javascript/dashboard/delete-post.js'></script>
+<script src='./javascript/dashboard/view-comments.js'></script>

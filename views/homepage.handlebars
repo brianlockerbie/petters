@@ -1,0 +1,44 @@
+<div id='homepage-posts'>
+  {{#each posts as |post|}}
+    <a id='single-post' href='/post/{{post.id}}'>
+      <img
+        class='{{post.image_filter}}'
+        id='post-image'
+        src='{{post.image_url}}'
+        alt='{{post.title}}'
+      />
+      <div id='post-body-wrapper'>
+        <div id='title-wrapper'>
+          <p id='post-date'>{{post.user.username}}
+            -
+            {{format_date post.created_at}}</p>
+          <p
+            class='{{post.category_name}}'
+            id='post-category'
+          >{{post.category_name}}</p>
+        </div>
+        <h4 id='post-title'>{{post.title}}</h4>
+        <p id='post-body'>
+          {{post.body}}
+        </p>
+      </div>
+      <div id='post-icon-wrapper'>
+        <div id='chat-icon-wrapper'>
+          <img id='chat-icon' src='./images/comment.png' alt='' />
+          <p>{{checkCounter post.comments}}</p>
+        </div>
+        <div id='like-icon-wrapper'>
+          <img
+            data-like-active='{{checkTruthy post.likes}}'
+            data-post-id='{{post.id}}'
+            class='like-icon {{checkTruthy post.likes}}'
+            src='./images/like.png'
+            alt=''
+          />
+          <p>{{post.like_count}}</p>
+        </div>
+      </div>
+    </a>
+  {{/each}}
+</div>
+<script src='./javascript/handle-likes.js'></script>

@@ -1,0 +1,77 @@
+<div id='page-singlepost'>
+    <div id='single-post'>
+      <img class='{{post.image_filter}}' id='post-image' src='{{checkImage post.image}}{{post.image}}' alt='{{post.title}}' />
+      <div id='post-body-wrapper'>
+        <div id='title-wrapper'>
+          <p id='post-date'>{{post.user}}
+            -
+            {{format_date post.date}}</p>
+          <p
+            class='{{post.category_name}}'
+            id='post-category'
+          >{{post.category_name}}</p>
+        </div>
+        <h4 id='post-title'>{{post.title}}</h4>
+        <p id='post-body'>{{post.description}}</p>
+      </div>
+    <div id='post-icon-wrapper'>
+      <div id='chat-icon-wrapper'>
+        <img id='chat-icon' src='../images/comment.png' alt='' />
+        <p>{{checkCounter post.comments}}</p>
+      </div>
+      <div id='like-icon-wrapper'>
+        <img
+            data-like-active='{{checkTruthy post.likes}}'
+            data-post-id='{{post.id}}'
+            class='like-icon {{checkTruthy post.likes}}'
+            src='../images/like.png'
+            alt=''
+          />
+        <p>{{post.like_count}}</p>
+      </div>
+  </div>
+    </div>
+  <form id='comment-form'>
+    {{#if loggedIn}}
+      <textarea id='comment-field' placeholder='Add comment'></textarea>
+      <h1 id='comment-status'>Required character count above 4</h1>
+      <button id="comment-submit" type='submit'>Post</button>
+    {{else}}
+      <textarea
+        id='comment-field'
+        disabled='true'
+        placeholder='To comment on the post you must be logged in.'
+      ></textarea>
+    {{/if}}
+  </form>
+  <hr id='comment-section-divider' />
+  <div id='comment-section'>
+    {{#if post.comments}}
+      {{#each post.comments as |comment|}}
+        {{#if comment.usersComment}}
+        <div id="single-comment" class="users-comment">
+        <div id="comment-control">
+          <p id="new-comment-status-{{comment.commentId}}" class="comment-status">Make sure the comment is greater than 4 characters</p>
+          <button data-comment-id="{{comment.commentId}}" style="display: none;" id="confirm-comment-{{comment.commentId}}" class='confirm-comment' >Confirm</button>
+          <button data-comment-id="{{comment.commentId}}" id="edit-comment-{{comment.commentId}}" class='edit-comment'>Edit</button>
+          <button data-comment-id="{{comment.commentId}}" id="delete-comment-{{comment.commentId}}" class='delete-comment'>Delete</button>
+        </div>
+        {{else}}
+        <div id='single-comment'>
+          {{/if}}
+          <div id='comment-wrapper'>
+            <p id='user-{{comment.commentId}}'>{{comment.user}}</p>
+            <p id='comment-{{comment.commentId}}'>{{comment.text}}</p>
+          </div>
+          <p id='comment-date' class="comment-date-{{commentId}}">{{format_date comment.date}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>No comments posted</p>
+    {{/if}}
+  </div>
+</div>
+<script src="/javascript/update-header.js"></script>
+<script src="/javascript/handle-comments.js"></script>
+<script src="/javascript/handle-likes.js"></script>
+
