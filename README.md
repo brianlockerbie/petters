@@ -1,5 +1,4 @@
 <h1 align ="center">Petters</h1>
-<p align ="center">Project #2</p>
 
 ## Table of Contents
 
